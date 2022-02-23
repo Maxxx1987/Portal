@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-{% for object in obj_list %}
-    <a href="{{ object.get_absolute_url }}">{{ object.title }}</a><br>
+{% for object in category_list %}
+    <a href="{{ object.get_absolute_url }}">{{ object }}</a><br>
 {% endfor %}
 </body>
 </html>

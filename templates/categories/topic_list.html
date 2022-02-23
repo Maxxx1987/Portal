@@ -6,7 +6,9 @@
 </head>
 <body>
 {% for object in object_list %}
-    {{ object.title }}<br>
+<a href="{{ object.get_absolute_url }}">{{ object.title }}</a> <span style="color: #40E0D0">({{ object.description }})</span><br>
 {% endfor %}
+<br>
+<a href="/categories/{{ view.kwargs.assign }}/add_topic/">Добавить тему</a>
 </body>
 </html>
