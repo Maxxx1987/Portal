@@ -6,7 +6,39 @@
 </head>
     <body>
     {% for comment in comment_list %}
-        {{ comment.text }}<br>
+        {{ comment.text }} ({{ comment.vote_set.count }})
+
+        {% if comment.user_id == request.user.id or request.user.is_superuser %}
+            <a href="{{ comment.get_absolute_url }}update/">Изменить</a>
+        {% endif %}
+
+        {% if comment.user_id == request.user.id or request.user.is_superuser %}
+        <form action="{{ comment.get_absolute_url }}delete/" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Удалить">
+        </form>
+        {% endif %}
+
+        {% if comment.user_id == request.user.id or request.user.is_superuser %}
+            {% if not comment.user_vote %}
+                <form action="{{ comment.get_absolute_url }}vote/" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="comment" value="{{ comment.id }}">
+                    <input type="submit" value="Лайк">
+                </form>
+            {% else %}
+                <form action="{{ comment.user_vote.0.get_absolute_url }}delete/" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Отмена лайка">
+                </form>
+            {% endif %}
+        {% endif %}
+
+        <br>
     {% endfor %}
+    <br>
+    {% include 'pagination.html' %}
+    <br>
+    <a href="/categories/{{ view.kwargs.assign }}/topics/{{ view.kwargs.slug }}/add_comment/">Добавить комментарий</a>
     </body>
 </html>

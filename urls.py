@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.categories.views import category_list, CategoryListView, TopicListView, TopicCreateView
-from apps.comments.views import CommentListView
+from apps.categories.views import CategoryListView, TopicListView, TopicCreateView
+from apps.comments.views import CommentListView, CommentCreateView, CommentUpdateView, CommentDeleteView
+from apps.votes.views import VoteCreateView, VoteDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,10 @@ urlpatterns = [
     path('categories/<str:assign>/add_topic/', TopicCreateView.as_view()),
 
     path('categories/<str:assign>/topics/<str:slug>/', CommentListView.as_view()),
+    path('categories/<str:assign>/topics/<str:slug>/add_comment/', CommentCreateView.as_view()),
+    path('categories/<str:assign>/topics/<str:slug>/comments/<int:pk>/update/', CommentUpdateView.as_view()),
+    path('categories/<str:assign>/topics/<str:slug>/comments/<int:pk>/delete/', CommentDeleteView.as_view()),
 
+    path('categories/<str:assign>/topics/<str:slug>/comments/<int:pk>/vote/', VoteCreateView.as_view()),
+    path('categories/<str:assign>/topics/<str:slug>/comments/<int:pk>/vote/<int:vote_id>/delete/', VoteDeleteView.as_view()),
 ]

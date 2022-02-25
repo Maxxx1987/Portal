@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'apps.categories',
     'apps.comments',
+    'apps.votes'
 ]
 
 MIDDLEWARE = [

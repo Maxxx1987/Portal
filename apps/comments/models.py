@@ -11,4 +11,4 @@ class Comment(models.Model):
         return self.text
 
     def get_absolute_url(self):
-        return f'/categories/{self.topic.category.url_assign}/topics/{self.topic.slug}/comments/{self.id}'
+        return f'/categories/{self.topic.category.url_assign}/topics/{self.topic.slug}/comments/{self.id}/'
