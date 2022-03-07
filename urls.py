@@ -14,13 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from apps.categories.views import CategoryListView, TopicListView, TopicCreateView
 from apps.comments.views import CommentListView, CommentCreateView, CommentUpdateView, CommentDeleteView
 from apps.votes.views import VoteCreateView, VoteDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('categories/', CategoryListView.as_view()),
     path('categories/<str:assign>/', TopicListView.as_view()),
     path('categories/<str:assign>/add_topic/', TopicCreateView.as_view()),

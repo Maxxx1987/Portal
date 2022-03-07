@@ -17,6 +17,10 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
     def __str__(self):
         return self.title
 
@@ -32,6 +36,10 @@ class Topic(models.Model):
     category = models.ForeignKey('categories.Category', on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField('Статус', max_length=32, choices=STATUS)
+
+    class Meta:
+        verbose_name = 'Топик'
+        verbose_name_plural = 'Топики'
 
     def __str__(self):
         return self.title

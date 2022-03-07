@@ -22,14 +22,7 @@ class CommentListView(ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         return (
-            qs
-            .filter(topic__slug=self.kwargs['slug'])
-            .prefetch_related(
-                Prefetch(
-                    'vote_set',
-                    queryset=Vote.objects.filter(user=self.request.user),
-                    to_attr='user_vote'
-                )
+            qs.filter(topic__slug=self.kwargs['slug']).prefetch_related(Prefetch('vote_set',queryset=Vote.objects.filter(user=self.request.user),to_attr='user_vote')
             )
         )
 

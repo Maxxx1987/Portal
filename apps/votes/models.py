@@ -6,5 +6,7 @@ class Vote(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.PROTECT)
     create_at = models.DateTimeField(auto_now_add=True)
 
+
+
     def get_absolute_url(self):
         return f'{self.comment.get_absolute_url()}vote/{self.id}/'

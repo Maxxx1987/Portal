@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-{% for object in object_list %}
-<a href="{{ object.get_absolute_url }}">{{ object.title }}</a> <span style="color: #40E0D0">({{ object.description }})</span><br>
+{% for object in topic_list %}
+<a href="{{ object.get_absolute_url }}">{{ object.title }}</a> <span style="color: #40E0D0">({{ object.description|safe }})</span><br>
 {% endfor %}
 <br>
 <a href="/categories/{{ view.kwargs.assign }}/add_topic/">Добавить тему</a>
