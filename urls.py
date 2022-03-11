@@ -15,14 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from apps.categories.views import CategoryListView, TopicListView, TopicCreateView
+from apps.categories.views import CategoryListView, TopicListView, TopicCreateView, RegisterUser, LoginUser, logout_user
 from apps.comments.views import CommentListView, CommentCreateView, CommentUpdateView, CommentDeleteView
 from apps.votes.views import VoteCreateView, VoteDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('categories/', CategoryListView.as_view()),
+    path('register/', RegisterUser.as_view(), name='register'),
+    path('login/', LoginUser.as_view(), name='login'),
+    path('logout/', logout_user, name='logout'),
+    #path('accounts/', include('allauth.urls')),
+    path('categories/', CategoryListView.as_view(), name='categories'),
     path('categories/<str:assign>/', TopicListView.as_view()),
     path('categories/<str:assign>/add_topic/', TopicCreateView.as_view()),
 

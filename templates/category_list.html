@@ -8,5 +8,11 @@
 {% for object in category_list %}
     <a href="{{ object.get_absolute_url }}">{{ object }}</a><br>
 {% endfor %}
+<br>
+{% if request.user.is_authenticated %}
+{{user.username}}|<a href="{% url 'logout' %}">Выйти</a>
+{% else %}
+<a href="{% url 'register' %}">Регистрация</a>|<a href="{% url 'login' %}">Войти</a>
+{% endif %}
 </body>
 </html>

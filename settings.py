@@ -37,12 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django.contrib.sites',
 
     'apps.categories',
     'apps.comments',
     'apps.votes',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    #'apps.allauth',
+    #'apps.allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +89,8 @@ DATABASES = {
     }
 }
 
+#AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+ #                          'allauth.account.auth_backends.AuthenticationBackend')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -131,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+#SITE_ID = 1
